@@ -20,4 +20,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] ToggleManager toggleManager;
     public ToggleManager ToggleManager { get => toggleManager; }
+
+    [SerializeField] MusicManager musicManager;
+    public MusicManager MusicManager { get => musicManager; }
+
+    [SerializeField] PlayerManager playerManager;
+    public PlayerManager PlayerManager { get => playerManager; }
 }

@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
 
     InputAction toggleAction;
 
+    GlassesController glassesController;
+
     private void Awake()
     {
         if (inputActions != null)
@@ -25,6 +27,8 @@ public class InputManager : MonoBehaviour
                 toggleAction.Enable();
             }
         }
+
+        glassesController = FindFirstObjectByType<GlassesController>();
     }
 
     void OnToggle(InputAction.CallbackContext context)
@@ -32,7 +36,8 @@ public class InputManager : MonoBehaviour
         if(context.performed)
         {
             //TODO: Toggle Glasses
-            GameManager.Instance.ToggleManager.ToggleAllObjs();
+            GameManager.Instance.PlayerManager.Player.GlassesController.ToggleGlasses();
+            //GameManager.Instance.ToggleManager.ToggleAllObjs();
         }
     }
 }
