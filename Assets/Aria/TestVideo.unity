@@ -629,6 +629,7 @@ GameObject:
   - component: {fileID: 490336487}
   - component: {fileID: 490336486}
   - component: {fileID: 490336485}
+  - component: {fileID: 490336488}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -644,13 +645,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490336483}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 2.9, y: 0.69, z: 0}
-  m_LocalScale: {x: 2.812, y: 1.3213, z: 0.074598}
+  m_LocalScale: {x: 1.4, y: 1.3, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 480787315}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!65 &490336485
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -695,7 +696,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: bf1f67e380df8f442bc03aae15e14335, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -725,6 +726,34 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490336483}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &490336488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490336483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a163ad42933f40a22278fa3b5fe71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 2800000, guid: ee8948f4882962f458eede4cb03faa14, type: 3}
+  - {fileID: 2800000, guid: 47a93a81b56d2b345805a192278b27d2, type: 3}
+  - {fileID: 2800000, guid: 85fbaa1807a4aca4d8c720f15e31ca67, type: 3}
+  - {fileID: 2800000, guid: 6490fbc5724819842aaa98535ddea81b, type: 3}
+  - {fileID: 2800000, guid: ed9f7f3119c2f3f4f9bef361ddd6e6b7, type: 3}
+  - {fileID: 2800000, guid: edc6c187c10f37e4581796546bdcf336, type: 3}
+  - {fileID: 2800000, guid: b92f205c255206249ae4e81226428b90, type: 3}
+  - {fileID: 2800000, guid: 5749bd3b5861df94dbd52d8ce75d8f22, type: 3}
+  - {fileID: 2800000, guid: 2eafd115019788443a608728ca89f3b2, type: 3}
+  - {fileID: 2800000, guid: 150f9b9903d55494a87a11e3efaf3c5f, type: 3}
+  - {fileID: 2800000, guid: 4327c07226f1b044791d5db840d9bde7, type: 3}
+  - {fileID: 2800000, guid: ebd8f7de656d81643b9c916f254be9f4, type: 3}
+  frameRate: 12
+  textureScale: {x: 0.93, y: 0.67}
+  textureOffset: {x: 0.07, y: -0.09}
 --- !u!1 &545664284
 GameObject:
   m_ObjectHideFlags: 0
