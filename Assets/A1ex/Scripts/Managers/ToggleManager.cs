@@ -15,11 +15,11 @@ public class ToggleManager : MonoBehaviour
         togglableList.AddRange(GameObject.FindObjectsByType<Togglable>(FindObjectsSortMode.None));
     }
 
-    public void ToggleAllObjs()
+    public void ToggleAllObjs(float time)
     {
         foreach(Togglable t in togglableList)
         {
-            t.Toggle();
+            t.Toggle(time);
         }
     }
 }

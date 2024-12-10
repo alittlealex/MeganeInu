@@ -44,7 +44,7 @@ public class GlassesController : MonoBehaviour
         }
 
         glasses.DOKill();
-        glasses.DOLocalMove(destination, moveTime).OnStart(() => moving = true).OnComplete(() => { moving = false; isOn = !isOn; GameManager.Instance.ToggleManager.ToggleAllObjs(); });
+        glasses.DOLocalMove(destination, moveTime).OnStart(() => { moving = true; GameManager.Instance.ToggleManager.ToggleAllObjs(moveTime); } ).OnComplete(() => { moving = false; isOn = !isOn; GameManager.Instance.MusicManager.GlassesON = isOn; });
         DOTween.To(() => glassesVolume.weight, x => glassesVolume.weight = x, glassVolumeWeight, moveTime);
         DOTween.To(() => normalVolume.weight, x => normalVolume.weight = x, normalVolumeWeight, moveTime);
     }
