@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,15 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource collageSong = null;
     [SerializeField] private AudioSource glitchSong = null;
 
-    [SerializeField] private bool glassesON = false;
+    [field: SerializeField][field: ReadOnly] public bool GlassesON { get; set; } = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (!glassesON)
+        if (!GlassesON)
         {
             CollageSong();
-        } else if (glassesON)
+        } else if (GlassesON)
         {
             GlitchSong();
         }
