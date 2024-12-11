@@ -20,14 +20,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_DOGEE
+  m_Name: Mat_BG02
   m_Shader: {fileID: 4800000, guid: 10d46d5e01b43a34f8283d7b51f3294f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -81,7 +81,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 8400000, guid: 70f62ea56d7e0a64e9f6df851aeeb7cc, type: 2}
+        m_Texture: {fileID: 8400000, guid: 1902d76f37bb69248adfd6e2877c3e2c, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -123,7 +123,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Size: 7.7
+    - _Size: 4.56
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -131,7 +131,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _SwitchUV: 0
-    - _WidthHeightRatio: 1.78
+    - _WidthHeightRatio: 2.06
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
