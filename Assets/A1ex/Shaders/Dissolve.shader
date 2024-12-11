@@ -14,6 +14,7 @@ Shader "Dissolve"
 		_Dissolve("Dissolve", Range( 0 , 1)) = 0
 		_Edge("Edge", Float) = 0.1
 		[HDR]_EdgeTint("EdgeTint", Color) = (1,1,1,0)
+		[Toggle(_SWITCHUV_ON)] _SwitchUV("SwitchUV", Float) = 0
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 
@@ -258,6 +259,7 @@ Shader "Dissolve"
 
 			#define ASE_NEEDS_FRAG_WORLD_NORMAL
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _SWITCHUV_ON
 
 
 			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
@@ -566,8 +568,15 @@ Shader "Dissolve"
 				if( abs( WorldNormal.z ) > 0.5 )
 				ifLocalVar37 = appendResult36;
 				float2 break41 = ( ( ifLocalVar27 + ifLocalVar33 + ifLocalVar37 ) / _Size );
-				float2 appendResult43 = (float2(break41.x , ( break41.y * _WidthHeightRatio )));
-				float4 temp_output_18_0 = ( tex2D( _MainTex, appendResult43 ) * _TInt );
+				float temp_output_42_0 = ( break41.y * _WidthHeightRatio );
+				float2 appendResult43 = (float2(break41.x , temp_output_42_0));
+				float2 appendResult46 = (float2(temp_output_42_0 , break41.x));
+				#ifdef _SWITCHUV_ON
+				float2 staticSwitch45 = appendResult46;
+				#else
+				float2 staticSwitch45 = appendResult43;
+				#endif
+				float4 temp_output_18_0 = ( tex2D( _MainTex, staticSwitch45 ) * _TInt );
 				float2 uv_DissolveTex = input.ase_texcoord9.xy * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
 				float4 tex2DNode13 = tex2D( _DissolveTex, uv_DissolveTex );
 				float temp_output_14_0 = step( tex2DNode13.r , _Dissolve );
@@ -1482,6 +1491,7 @@ Shader "Dissolve"
 
 			#define ASE_NEEDS_VERT_NORMAL
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _SWITCHUV_ON
 
 
 			struct Attributes
@@ -1736,8 +1746,15 @@ Shader "Dissolve"
 				if( abs( ase_normalWS.z ) > 0.5 )
 				ifLocalVar37 = appendResult36;
 				float2 break41 = ( ( ifLocalVar27 + ifLocalVar33 + ifLocalVar37 ) / _Size );
-				float2 appendResult43 = (float2(break41.x , ( break41.y * _WidthHeightRatio )));
-				float4 temp_output_18_0 = ( tex2D( _MainTex, appendResult43 ) * _TInt );
+				float temp_output_42_0 = ( break41.y * _WidthHeightRatio );
+				float2 appendResult43 = (float2(break41.x , temp_output_42_0));
+				float2 appendResult46 = (float2(temp_output_42_0 , break41.x));
+				#ifdef _SWITCHUV_ON
+				float2 staticSwitch45 = appendResult46;
+				#else
+				float2 staticSwitch45 = appendResult43;
+				#endif
+				float4 temp_output_18_0 = ( tex2D( _MainTex, staticSwitch45 ) * _TInt );
 				float2 uv_DissolveTex = input.ase_texcoord5.xy * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
 				float4 tex2DNode13 = tex2D( _DissolveTex, uv_DissolveTex );
 				float temp_output_14_0 = step( tex2DNode13.r , _Dissolve );
@@ -1811,6 +1828,7 @@ Shader "Dissolve"
 
 			#define ASE_NEEDS_VERT_NORMAL
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _SWITCHUV_ON
 
 
 			struct Attributes
@@ -2038,8 +2056,15 @@ Shader "Dissolve"
 				if( abs( ase_normalWS.z ) > 0.5 )
 				ifLocalVar37 = appendResult36;
 				float2 break41 = ( ( ifLocalVar27 + ifLocalVar33 + ifLocalVar37 ) / _Size );
-				float2 appendResult43 = (float2(break41.x , ( break41.y * _WidthHeightRatio )));
-				float4 temp_output_18_0 = ( tex2D( _MainTex, appendResult43 ) * _TInt );
+				float temp_output_42_0 = ( break41.y * _WidthHeightRatio );
+				float2 appendResult43 = (float2(break41.x , temp_output_42_0));
+				float2 appendResult46 = (float2(temp_output_42_0 , break41.x));
+				#ifdef _SWITCHUV_ON
+				float2 staticSwitch45 = appendResult46;
+				#else
+				float2 staticSwitch45 = appendResult43;
+				#endif
+				float4 temp_output_18_0 = ( tex2D( _MainTex, staticSwitch45 ) * _TInt );
 				float2 uv_DissolveTex = input.ase_texcoord3.xy * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
 				float4 tex2DNode13 = tex2D( _DissolveTex, uv_DissolveTex );
 				float temp_output_14_0 = step( tex2DNode13.r , _Dissolve );
@@ -2480,6 +2505,7 @@ Shader "Dissolve"
 
 			#define ASE_NEEDS_FRAG_WORLD_NORMAL
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _SWITCHUV_ON
 
 
 			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
@@ -2788,8 +2814,15 @@ Shader "Dissolve"
 				if( abs( WorldNormal.z ) > 0.5 )
 				ifLocalVar37 = appendResult36;
 				float2 break41 = ( ( ifLocalVar27 + ifLocalVar33 + ifLocalVar37 ) / _Size );
-				float2 appendResult43 = (float2(break41.x , ( break41.y * _WidthHeightRatio )));
-				float4 temp_output_18_0 = ( tex2D( _MainTex, appendResult43 ) * _TInt );
+				float temp_output_42_0 = ( break41.y * _WidthHeightRatio );
+				float2 appendResult43 = (float2(break41.x , temp_output_42_0));
+				float2 appendResult46 = (float2(temp_output_42_0 , break41.x));
+				#ifdef _SWITCHUV_ON
+				float2 staticSwitch45 = appendResult46;
+				#else
+				float2 staticSwitch45 = appendResult43;
+				#endif
+				float4 temp_output_18_0 = ( tex2D( _MainTex, staticSwitch45 ) * _TInt );
 				float2 uv_DissolveTex = input.ase_texcoord9.xy * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
 				float4 tex2DNode13 = tex2D( _DissolveTex, uv_DissolveTex );
 				float temp_output_14_0 = step( tex2DNode13.r , _Dissolve );
@@ -3682,8 +3715,10 @@ Node;AmplifyShaderEditor.RangedFloatNode;39;-2032,-16;Inherit;False;Property;_Si
 Node;AmplifyShaderEditor.SimpleDivideOpNode;40;-1840,-144;Inherit;False;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.BreakToComponentsNode;41;-1552,-32;Inherit;False;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;42;-1328,64;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.DynamicAppendNode;43;-1136,-16;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.RangedFloatNode;44;-1664,144;Inherit;False;Property;_WidthHeightRatio;WidthHeightRatio;3;0;Create;True;0;0;0;False;0;False;1;1;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.DynamicAppendNode;43;-1136,-16;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.DynamicAppendNode;46;-1120,160;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.StaticSwitch;45;-960,144;Inherit;False;Property;_SwitchUV;SwitchUV;8;0;Create;True;0;0;0;False;0;False;0;0;0;True;;Toggle;2;Key0;Key1;Create;True;True;All;9;1;FLOAT2;0,0;False;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT2;0,0;False;6;FLOAT2;0,0;False;7;FLOAT2;0,0;False;8;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;True;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
@@ -3695,7 +3730,7 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;9;0,0;Float;False;False;-1;
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;10;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ScenePickingPass;0;9;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;11;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;MotionVectors;0;10;MotionVectors;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;False;False;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=MotionVectors;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;720,-80;Float;False;True;-1;3;UnityEditor.ShaderGraphLitGUI;0;12;Dissolve;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;21;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;;0;0;Standard;45;Lighting Model;0;0;Workflow;1;0;Surface;1;638694517435310529;  Refraction Model;0;0;  Blend;0;0;Two Sided;1;0;Alpha Clipping;1;0;  Use Shadow Threshold;0;0;Fragment Normal Space,InvertActionOnDeselection;0;0;Forward Only;0;0;Transmission;0;0;  Transmission Shadow;0.5,False,;0;Translucency;0;0;  Translucency Strength;1,False,;0;  Normal Distortion;0.5,False,;0;  Scattering;2,False,;0;  Direct;0.9,False,;0;  Ambient;0.1,False,;0;  Shadow;0.5,False,;0;Cast Shadows;1;0;Receive Shadows;1;0;Receive SSAO;1;0;Motion Vectors;1;0;  Add Precomputed Velocity;0;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;_FinalColorxAlpha;0;0;Meta Pass;1;0;Override Baked GI;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position,InvertActionOnDeselection;1;0;Debug Display;0;0;Clear Coat;0;0;0;11;False;True;True;True;True;True;True;True;True;True;True;False;;False;0
-WireConnection;12;1;43;0
+WireConnection;12;1;45;0
 WireConnection;19;0;13;1
 WireConnection;19;1;20;0
 WireConnection;21;0;19;0
@@ -3739,7 +3774,11 @@ WireConnection;42;0;41;1
 WireConnection;42;1;44;0
 WireConnection;43;0;41;0
 WireConnection;43;1;42;0
+WireConnection;46;0;42;0
+WireConnection;46;1;41;0
+WireConnection;45;1;43;0
+WireConnection;45;0;46;0
 WireConnection;2;0;25;0
 WireConnection;2;6;14;0
 ASEEND*/
-//CHKSM=9B7DFA78B1B0A78A3E64FC1373A988825D2B9226
+//CHKSM=80CE8004B6EB6067133196D853749546A8BD1148

@@ -59,6 +59,8 @@ Material:
     - _ReceiveShadows: 1
     - _Size: 1
     - _SpecularHighlights: 1
+    - _SwitchUV: 0
+    - _WidthHeightRatio: 1
     m_Colors:
     - _EdgeTint: {r: 27.857622, g: 27.857622, b: 27.857622, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
