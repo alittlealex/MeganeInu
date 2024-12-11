@@ -9,6 +9,7 @@ Shader "World Space Texture"
 		_TextureSample0("Texture Sample 0", 2D) = "white" {}
 		_Size("Size", Float) = 1
 		_WidthHeightRatio("WidthHeightRatio", Float) = 1
+		[Toggle(_SWITCHUV_ON)] _SwitchUV("SwitchUV", Float) = 0
 
 
 		//_TransmissionShadow( "Transmission Shadow", Range( 0, 1 ) ) = 0.5
@@ -251,6 +252,7 @@ Shader "World Space Texture"
 
 			#define ASE_NEEDS_FRAG_WORLD_NORMAL
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _SWITCHUV_ON
 
 
 			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
@@ -550,10 +552,17 @@ Shader "World Space Texture"
 				if( abs( WorldNormal.z ) > 0.5 )
 				ifLocalVar36 = appendResult37;
 				float2 break46 = ( ( ifLocalVar24 + ifLocalVar27 + ifLocalVar36 ) / _Size );
-				float2 appendResult48 = (float2(break46.x , ( break46.y * _WidthHeightRatio )));
+				float temp_output_47_0 = ( break46.y * _WidthHeightRatio );
+				float2 appendResult48 = (float2(break46.x , temp_output_47_0));
+				float2 appendResult52 = (float2(temp_output_47_0 , break46.x));
+				#ifdef _SWITCHUV_ON
+				float2 staticSwitch51 = appendResult52;
+				#else
+				float2 staticSwitch51 = appendResult48;
+				#endif
 				
 
-				float3 BaseColor = tex2D( _TextureSample0, appendResult48 ).rgb;
+				float3 BaseColor = tex2D( _TextureSample0, staticSwitch51 ).rgb;
 				float3 Normal = float3(0, 0, 1);
 				float3 Emission = 0;
 				float3 Specular = 0.5;
@@ -1433,6 +1442,7 @@ Shader "World Space Texture"
 
 			#define ASE_NEEDS_VERT_NORMAL
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _SWITCHUV_ON
 
 
 			struct Attributes
@@ -1678,10 +1688,17 @@ Shader "World Space Texture"
 				if( abs( ase_normalWS.z ) > 0.5 )
 				ifLocalVar36 = appendResult37;
 				float2 break46 = ( ( ifLocalVar24 + ifLocalVar27 + ifLocalVar36 ) / _Size );
-				float2 appendResult48 = (float2(break46.x , ( break46.y * _WidthHeightRatio )));
+				float temp_output_47_0 = ( break46.y * _WidthHeightRatio );
+				float2 appendResult48 = (float2(break46.x , temp_output_47_0));
+				float2 appendResult52 = (float2(temp_output_47_0 , break46.x));
+				#ifdef _SWITCHUV_ON
+				float2 staticSwitch51 = appendResult52;
+				#else
+				float2 staticSwitch51 = appendResult48;
+				#endif
 				
 
-				float3 BaseColor = tex2D( _TextureSample0, appendResult48 ).rgb;
+				float3 BaseColor = tex2D( _TextureSample0, staticSwitch51 ).rgb;
 				float3 Emission = 0;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
@@ -1748,6 +1765,7 @@ Shader "World Space Texture"
 
 			#define ASE_NEEDS_VERT_NORMAL
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _SWITCHUV_ON
 
 
 			struct Attributes
@@ -1965,10 +1983,17 @@ Shader "World Space Texture"
 				if( abs( ase_normalWS.z ) > 0.5 )
 				ifLocalVar36 = appendResult37;
 				float2 break46 = ( ( ifLocalVar24 + ifLocalVar27 + ifLocalVar36 ) / _Size );
-				float2 appendResult48 = (float2(break46.x , ( break46.y * _WidthHeightRatio )));
+				float temp_output_47_0 = ( break46.y * _WidthHeightRatio );
+				float2 appendResult48 = (float2(break46.x , temp_output_47_0));
+				float2 appendResult52 = (float2(temp_output_47_0 , break46.x));
+				#ifdef _SWITCHUV_ON
+				float2 staticSwitch51 = appendResult52;
+				#else
+				float2 staticSwitch51 = appendResult48;
+				#endif
 				
 
-				float3 BaseColor = tex2D( _TextureSample0, appendResult48 ).rgb;
+				float3 BaseColor = tex2D( _TextureSample0, staticSwitch51 ).rgb;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
 
@@ -2388,6 +2413,7 @@ Shader "World Space Texture"
 
 			#define ASE_NEEDS_FRAG_WORLD_NORMAL
 			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _SWITCHUV_ON
 
 
 			#if defined(ASE_EARLY_Z_DEPTH_OPTIMIZE) && (SHADER_TARGET >= 45)
@@ -2687,10 +2713,17 @@ Shader "World Space Texture"
 				if( abs( WorldNormal.z ) > 0.5 )
 				ifLocalVar36 = appendResult37;
 				float2 break46 = ( ( ifLocalVar24 + ifLocalVar27 + ifLocalVar36 ) / _Size );
-				float2 appendResult48 = (float2(break46.x , ( break46.y * _WidthHeightRatio )));
+				float temp_output_47_0 = ( break46.y * _WidthHeightRatio );
+				float2 appendResult48 = (float2(break46.x , temp_output_47_0));
+				float2 appendResult52 = (float2(temp_output_47_0 , break46.x));
+				#ifdef _SWITCHUV_ON
+				float2 staticSwitch51 = appendResult52;
+				#else
+				float2 staticSwitch51 = appendResult48;
+				#endif
 				
 
-				float3 BaseColor = tex2D( _TextureSample0, appendResult48 ).rgb;
+				float3 BaseColor = tex2D( _TextureSample0, staticSwitch51 ).rgb;
 				float3 Normal = float3(0, 0, 1);
 				float3 Emission = 0;
 				float3 Specular = 0.5;
@@ -3524,8 +3557,10 @@ Node;AmplifyShaderEditor.SimpleDivideOpNode;40;304.3006,95.86634;Inherit;False;2
 Node;AmplifyShaderEditor.SamplerNode;10;1200,-128;Inherit;True;Property;_TextureSample0;Texture Sample 0;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.BreakToComponentsNode;46;512,224;Inherit;False;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;47;736,320;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.DynamicAppendNode;48;928,240;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.RangedFloatNode;42;400,400;Inherit;False;Property;_WidthHeightRatio;WidthHeightRatio;2;0;Create;True;0;0;0;False;0;False;1;1;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.StaticSwitch;51;1088,144;Inherit;False;Property;_SwitchUV;SwitchUV;3;0;Create;True;0;0;0;False;0;False;0;0;0;True;;Toggle;2;Key0;Key1;Create;True;True;All;9;1;FLOAT2;0,0;False;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT2;0,0;False;6;FLOAT2;0,0;False;7;FLOAT2;0,0;False;8;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.DynamicAppendNode;48;928,240;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.DynamicAppendNode;52;928,384;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;12;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;12;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;12;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;True;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
@@ -3560,12 +3595,16 @@ WireConnection;38;1;27;0
 WireConnection;38;2;36;0
 WireConnection;40;0;38;0
 WireConnection;40;1;12;0
-WireConnection;10;1;48;0
+WireConnection;10;1;51;0
 WireConnection;46;0;40;0
 WireConnection;47;0;46;1
 WireConnection;47;1;42;0
+WireConnection;51;1;48;0
+WireConnection;51;0;52;0
 WireConnection;48;0;46;0
 WireConnection;48;1;47;0
+WireConnection;52;0;47;0
+WireConnection;52;1;46;0
 WireConnection;1;0;10;0
 ASEEND*/
-//CHKSM=6FFCA7F7370EA574CE6F6AB35451318C772E552E
+//CHKSM=C67A0905F84148BE159E256A7763CD65D14647C1
