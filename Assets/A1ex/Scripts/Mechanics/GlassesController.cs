@@ -12,6 +12,7 @@ public class GlassesController : MonoBehaviour
 
     [SerializeField] Volume normalVolume;
     [SerializeField] Volume glassesVolume;
+    [SerializeField] Animator animator;
 
 
     float timer = 0;
@@ -26,6 +27,7 @@ public class GlassesController : MonoBehaviour
         glassesVolume.weight = 0f;
         normalVolume.weight = 1f;
         isOn = false;
+        animator.gameObject.SetActive(false);
     }
 
     [Button]
@@ -44,8 +46,27 @@ public class GlassesController : MonoBehaviour
         }
 
         glasses.DOKill();
-        glasses.DOLocalMove(destination, moveTime).OnStart(() => { moving = true; GameManager.Instance.ToggleManager.ToggleAllObjs(moveTime); } ).OnComplete(() => { moving = false; isOn = !isOn; GameManager.Instance.MusicManager.GlassesON = isOn; });
+        glasses.DOLocalMove(destination, moveTime).OnStart(OnStart).OnComplete(OnComplete);
         DOTween.To(() => glassesVolume.weight, x => glassesVolume.weight = x, glassVolumeWeight, moveTime);
         DOTween.To(() => normalVolume.weight, x => normalVolume.weight = x, normalVolumeWeight, moveTime);
+    }
+
+    void OnStart()
+    {
+        moving = true; 
+        GameManager.Instance.ToggleManager.ToggleAllObjs(moveTime);
+        animator.gameObject.SetActive(true);
+        if (isOn)
+            animator.CrossFade("TakeOff", 0.2f);
+        else
+            animator.CrossFade("PutOn", 0.2f);
+    }
+
+    void OnComplete()
+    {
+        moving = false; 
+        isOn = !isOn; 
+        GameManager.Instance.MusicManager.GlassesON = isOn;
+        animator.gameObject.SetActive(false);
     }
 }
